@@ -13,6 +13,6 @@ app.get('/users', async (req, res) => {
     return res.status(200).json(list)
 })
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('teste')
 })
