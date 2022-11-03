@@ -6,12 +6,12 @@ const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 
+const config = require(__dirname + '/../config/config.js');
 const db = {};
 
 let sequelize;
 
-
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 
 fs
