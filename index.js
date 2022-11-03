@@ -3,6 +3,9 @@ const { User } = require('./models/index')
 
 
 const app = express()
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', async (req, res) => {
     res.send('hello')
@@ -14,8 +17,8 @@ app.get('/users', async (req, res) => {
 })
 
 app.post('/users', async (req, res)=> {
-    const newUser = req.body;
-    const userAdded = await User.create(newUser)
+
+    const userAdded = await User.create(req.body)
 
     return res.status(201).json(userAdded)
 })
