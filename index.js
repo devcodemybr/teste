@@ -22,11 +22,21 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(require('express-status-monitor')());
+//app.use(require('express-status-monitor')());
 
 app.get('/', async (req, res) => {
   winston.log('info', "Hello World from Node.js!");
-    res.send('hello')
+  const healthcheck = {
+    uptime: process.uptime(),
+    message: 'OK',
+    timestamp: Date.now()
+  };
+  try {
+      res.send(healthcheck);
+  } catch (error) {
+      healthcheck.message = error;
+      res.status(503).send();
+  }
 })
 
 app.get('/users', async (req, res) => {
