@@ -1,6 +1,7 @@
 const express = require('express')
 const { User } = require('./models/index')
 const { Dog } = require("./schemas/dogs");
+const db = require("./config/mongo.config");
 const mongoose = require("mongoose");
 
 
@@ -38,9 +39,7 @@ app.post("/dogs", async (req, res) => {
 
 const start = async () => {
     try {
-      await mongoose.connect(
-        "mongodb+srv://devcodemy:devcodemy@devcodemy.h046fqr.mongodb.net/?retryWrites=true&w=majority"
-      );
+      await mongoose.connect(db.uri, { useNewUrlParser: true });
       app.listen(process.env.PORT || 3000, () => console.log("Server started on port 3000"));
     } catch (error) {
       console.error(error);
