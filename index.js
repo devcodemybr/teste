@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(require('express-status-monitor')());
+// app.use(require('express-status-monitor')());
 
 app.get('/', async (req, res) => {
   winston.log('info', "Hello World from Node.js!");z
